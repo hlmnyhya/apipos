@@ -8,13 +8,11 @@ pool.on('error', (err) => {
 
 module.exports = {
     // Ambil data semua order
-    getDataorder(req, res) {
+    getDataordered(req, res) {
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
-                `
-                SELECT * FROM order;
-                `
+                `SELECT * FROM ordered; `
                 , function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -27,14 +25,14 @@ module.exports = {
         })
     },
     // Ambil data order berdasarkan ID
-    getDataorderByID(req, res) {
+    getDataorderedByID(req, res) {
         let id = req.params.id;
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM order WHERE id_order = ?;
-                `
+            SELECT * FROM ordered WHERE id_order = ?;
+            `
                 , [id],
                 function (error, results) {
                     if (error) throw error;
@@ -48,20 +46,14 @@ module.exports = {
         })
     },
     // Simpan data order
-    addDataorder(req, res) {
-        let data = {
-            order_nama: req.body.nama,
-            order_umur: req.body.umur,
-            order_alamat: req.body.alamat,
-            order_jabatan: req.body.jabatan
-        }
+    addDataordered(req, res) {
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                INSERT INTO order SET ?;
-                `
-                , [data],
+                INSERT INTO ordered SET ?;
+            `
+                ,
                 function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -73,21 +65,15 @@ module.exports = {
         })
     },
     // Update data order
-    editDataorder(req, res) {
-        let dataEdit = {
-            order_nama: req.body.nama,
-            order_umur: req.body.umur,
-            order_alamat: req.body.alamat,
-            order_jabatan: req.body.jabatan
-        }
+    editDataordered(req, res) {
         let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                UPDATE order SET ? WHERE id_order = ?;
-                `
-                , [dataEdit, id],
+                UPDATE ordered SET ? WHERE id_order = ?;
+            `
+                , [id],
                 function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -99,14 +85,14 @@ module.exports = {
         })
     },
     // Delete data order
-    deleteDataorder(req, res) {
+    deleteDataordered(req, res) {
         let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                DELETE FROM order WHERE id_order = ?;
-                `
+                DELETE FROM ordered WHERE id_order = ?;
+            `
                 , [id],
                 function (error, results) {
                     if (error) throw error;
