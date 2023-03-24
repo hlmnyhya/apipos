@@ -11,9 +11,9 @@ router.get('/api/order/:id', order.getDataorderedByID);
 router.post('/api/order/add', order.addDataordered);
 
 // POST localhost:8080/order/2 => Edit data order
-router.post('/api/order/edit', order.editDataordered);
+router.put('/api/order/edit', order.editDataordered);
 
 // POST localhost:8080/order/delete => Delete data order
-router.post('/api/order/delete/', order.deleteDataordered);
+router.delete('/api/order/delete/', order.deleteDataordered);
 
 module.exports = router;

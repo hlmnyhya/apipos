@@ -1,19 +1,20 @@
 {
-  "name": "apipos",
-  "version": "1.0.0",
-  "description": "Backend for POS APP",
-  "main": "app.js",
-  "devDependencies": {},
+  "name": "api-pos",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.21"
+    "mysql2": "^3.2.0",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.29.3",
+    "yarn": "^1.22.19"
   }
 }
