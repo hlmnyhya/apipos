@@ -2,6 +2,7 @@ const config = require('../config/database');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
 
+
 pool.on('error', (err) => {
     console.error(err);
 });
@@ -50,10 +51,11 @@ module.exports = {
     // Simpan data product
     addDataproduct(req, res) {
         let data = {
-            product_nama: req.body.nama,
-            product_umur: req.body.umur,
-            product_alamat: req.body.alamat,
-            product_jabatan: req.body.jabatan
+            id_product: req.body.id_product,
+            product: req.body.product,
+            kategori: req.body.kategori,
+            harga: req.body.harga,
+            stok: req.body.stok
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;

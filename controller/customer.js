@@ -50,10 +50,10 @@ module.exports = {
     // Simpan data customer
     addDatacustomer(req, res) {
         let data = {
-            customer_nama: req.body.nama,
-            customer_umur: req.body.umur,
-            customer_alamat: req.body.alamat,
-            customer_jabatan: req.body.jabatan
+            id_customer: req.body.id_customer,
+            id_order: req.body.id_order,
+            tgl_pesan: req.body.tgl_pesan,
+            total: req.body.total
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +75,10 @@ module.exports = {
     // Update data customer
     editDatacustomer(req, res) {
         let dataEdit = {
-            customer_nama: req.body.nama,
-            customer_umur: req.body.umur,
-            customer_alamat: req.body.alamat,
-            customer_jabatan: req.body.jabatan
+            id_customer: req.body.id_customer,
+            id_order: req.body.id_order,
+            tgl_pesan: req.body.tgl_pesan,
+            total: req.body.total
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

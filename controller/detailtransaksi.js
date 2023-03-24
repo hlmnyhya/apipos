@@ -2,6 +2,7 @@ const config = require('../config/database');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
 
+
 pool.on('error', (err) => {
     console.error(err);
 });
@@ -50,10 +51,11 @@ module.exports = {
     // Simpan data detailtransaksi
     addDatadetailtransaksi(req, res) {
         let data = {
-            detailtransaksi_nama: req.body.nama,
-            detailtransaksi_umur: req.body.umur,
-            detailtransaksi_alamat: req.body.alamat,
-            detailtransaksi_jabatan: req.body.jabatan
+            id_detail_transaksi: req.body.id_detail_transaksi,
+            id_customer: req.body.id_customer,
+            id_product: req.body.id_product,
+            id_order: req.body.id_order,
+            id_transaksi: req.body.id_transaksi
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +77,11 @@ module.exports = {
     // Update data detailtransaksi
     editDatadetailtransaksi(req, res) {
         let dataEdit = {
-            detailtransaksi_nama: req.body.nama,
-            detailtransaksi_umur: req.body.umur,
-            detailtransaksi_alamat: req.body.alamat,
-            detailtransaksi_jabatan: req.body.jabatan
+            id_detail_transaksi: req.body.id_detail_transaksi,
+            id_customer: req.body.id_customer,
+            id_product: req.body.id_product,
+            id_order: req.body.id_order,
+            id_transaksi: req.body.id_transaksi
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

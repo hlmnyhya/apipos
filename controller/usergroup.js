@@ -50,10 +50,13 @@ module.exports = {
     // Simpan data usergroup
     addDatausergroup(req, res) {
         let data = {
-            usergroup_nama: req.body.nama,
-            usergroup_umur: req.body.umur,
-            usergroup_alamat: req.body.alamat,
-            usergroup_jabatan: req.body.jabatan
+            id_usergroup: req.body.id_usergroup,
+            usergroup: req.body.usergroup,
+            input_by: req.body.input_by,
+            tanggal_input: req.body.tanggal_input,
+            edit_by: req.body.edit_by,
+            tanggal_edit: req.body.tanggal_edit,
+            row_status: req.body.row_status
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +78,12 @@ module.exports = {
     // Update data usergroup
     editDatausergroup(req, res) {
         let dataEdit = {
-            usergroup_nama: req.body.nama,
-            usergroup_umur: req.body.umur,
-            usergroup_alamat: req.body.alamat,
-            usergroup_jabatan: req.body.jabatan
+            usergroup: req.body.usergroup,
+            input_by: req.body.input_by,
+            tanggal_input: req.body.tanggal_input,
+            edit_by: req.body.edit_by,
+            tanggal_edit: req.body.tanggal_edit,
+            row_status: req.body.row_status
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

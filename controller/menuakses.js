@@ -2,6 +2,7 @@ const config = require('../config/database');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
 
+
 pool.on('error', (err) => {
     console.error(err);
 });
@@ -50,10 +51,9 @@ module.exports = {
     // Simpan data menuakses
     addDatamenuakses(req, res) {
         let data = {
-            menuakses_nama: req.body.nama,
-            menuakses_umur: req.body.umur,
-            menuakses_alamat: req.body.alamat,
-            menuakses_jabatan: req.body.jabatan
+            id_menuakses: req.body.id_menuakses,
+            id_menu: req.body.id_menu,
+            id_usergroup: req.body.id_usergroup
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +75,9 @@ module.exports = {
     // Update data menuakses
     editDatamenuakses(req, res) {
         let dataEdit = {
-            menuakses_nama: req.body.nama,
-            menuakses_umur: req.body.umur,
-            menuakses_alamat: req.body.alamat,
-            menuakses_jabatan: req.body.jabatan
+            id_menuakses: req.body.id_menuakses,
+            id_menu: req.body.id_menu,
+            id_usergroup: req.body.id_usergroup
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

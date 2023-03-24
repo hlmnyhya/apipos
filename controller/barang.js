@@ -50,10 +50,11 @@ module.exports = {
     // Simpan data barang
     addDatabarang(req, res) {
         let data = {
-            barang_nama: req.body.nama,
-            barang_umur: req.body.umur,
-            barang_alamat: req.body.alamat,
-            barang_jabatan: req.body.jabatan
+            id_barang: req.body.id_barang,
+            barang: req.body.barang,
+            harga: req.body.harga,
+            stok: req.body.stok,
+            id_supplier: req.body.id_supplier
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +76,11 @@ module.exports = {
     // Update data barang
     editDatabarang(req, res) {
         let dataEdit = {
-            barang_nama: req.body.nama,
-            barang_umur: req.body.umur,
-            barang_alamat: req.body.alamat,
-            barang_jabatan: req.body.jabatan
+            id_barang: req.body.id_barang,
+            barang: req.body.barang,
+            harga: req.body.harga,
+            stok: req.body.stok,
+            id_supplier: req.body.id_supplier
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

@@ -47,13 +47,20 @@ module.exports = {
     },
     // Simpan data order
     addDataordered(req, res) {
+        let data = {
+            id_order: req.body.id_order,
+            nama_toko: req.body.nama_toko,
+            alamat: req.body.alamat,
+            no_hp: req.body.no_hp,
+            email: req.body.email
+        }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
                 INSERT INTO ordered SET ?;
             `
-                ,
+                , [data],
                 function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -66,6 +73,12 @@ module.exports = {
     },
     // Update data order
     editDataordered(req, res) {
+        let dataEdit = {
+            nama_toko: req.body.nama_toko,
+            alamat: req.body.alamat,
+            no_hp: req.body.no_hp,
+            email: req.body.email
+        }
         let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -73,7 +86,7 @@ module.exports = {
                 `
                 UPDATE ordered SET ? WHERE id_order = ?;
             `
-                , [id],
+                , [dataEdit, id],
                 function (error, results) {
                     if (error) throw error;
                     res.send({

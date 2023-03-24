@@ -1,4 +1,4 @@
-const config = require('../config/database');
+const config = require('../../config/database');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
 
@@ -8,13 +8,13 @@ pool.on('error', (err) => {
 });
 
 module.exports = {
-    // Ambil data semua detailproduct
-    getDatadetailproduct(req, res) {
+    // Ambil data semua user
+    getDatauser(req, res) {
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM detail_product;
+                SELECT * FROM user;
                 `
                 , function (error, results) {
                     if (error) throw error;
@@ -27,14 +27,14 @@ module.exports = {
             connection.release();
         })
     },
-    // Ambil data detailproduct berdasarkan ID
-    getDatadetailproductByID(req, res) {
+    // Ambil data user berdasarkan ID
+    getDatauserByID(req, res) {
         let id = req.params.id;
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM detail_product WHERE id_detail_product = ?;
+                SELECT * FROM user WHERE id_user = ?;
                 `
                 , [id],
                 function (error, results) {
@@ -48,19 +48,19 @@ module.exports = {
             connection.release();
         })
     },
-    // Simpan data detailproduct
-    addDatadetailproduct(req, res) {
+    // Simpan data user
+    addDatauser(req, res) {
         let data = {
-            id_detail_product: req.body.id_detail_product,
-            id_product: req.body.id_product,
-            id_barang: req.body.id_barang,
-            id_supplier: req.body.id_supplier
+            nama: req.body.nama,
+            user_umur: req.body.umur,
+            user_alamat: req.body.alamat,
+            user_jabatan: req.body.jabatan
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                INSERT INTO detail_product SET ?;
+                INSERT INTO user SET ?;
                 `
                 , [data],
                 function (error, results) {
@@ -73,20 +73,20 @@ module.exports = {
             connection.release();
         })
     },
-    // Update data detailproduct
-    editDatadetailproduct(req, res) {
+    // Update data user
+    editDatauser(req, res) {
         let dataEdit = {
-            id_detail_product: req.body.id_detail_product,
-            id_product: req.body.id_product,
-            id_barang: req.body.id_barang,
-            id_supplier: req.body.id_supplier
+            user_nama: req.body.nama,
+            user_umur: req.body.umur,
+            user_alamat: req.body.alamat,
+            user_jabatan: req.body.jabatan
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                UPDATE detail_product SET ? WHERE id_detail_product = ?;
+                UPDATE user SET ? WHERE id_user = ?;
                 `
                 , [dataEdit, id],
                 function (error, results) {
@@ -99,14 +99,14 @@ module.exports = {
             connection.release();
         })
     },
-    // Delete data detailproduct
-    deleteDatadetailproduct(req, res) {
+    // Delete data user
+    deleteDatauser(req, res) {
         let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                DELETE FROM detail_product WHERE id_detail_product = ?;
+                DELETE FROM user WHERE id_user = ?;
                 `
                 , [id],
                 function (error, results) {

@@ -2,6 +2,7 @@ const config = require('../config/database');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
 
+
 pool.on('error', (err) => {
     console.error(err);
 });
@@ -50,10 +51,10 @@ module.exports = {
     // Simpan data menu
     addDatamenu(req, res) {
         let data = {
-            menu_nama: req.body.nama,
-            menu_umur: req.body.umur,
-            menu_alamat: req.body.alamat,
-            menu_jabatan: req.body.jabatan
+            id_menu: req.body.id_menu,
+            menu: req.body.menu,
+            icon: req.body.icon,
+            in_aktif: req.body.in_aktif
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +76,9 @@ module.exports = {
     // Update data menu
     editDatamenu(req, res) {
         let dataEdit = {
-            menu_nama: req.body.nama,
-            menu_umur: req.body.umur,
-            menu_alamat: req.body.alamat,
-            menu_jabatan: req.body.jabatan
+            menu: req.body.menu,
+            icon: req.body.icon,
+            in_aktif: req.body.in_aktif
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

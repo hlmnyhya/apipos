@@ -50,10 +50,10 @@ module.exports = {
     // Simpan data supplier
     addDatasupplier(req, res) {
         let data = {
-            supplier_nama: req.body.nama,
-            supplier_umur: req.body.umur,
-            supplier_alamat: req.body.alamat,
-            supplier_jabatan: req.body.jabatan
+            id_supplier: req.body.id_supplier,
+            supplier: req.body.supplier,
+            no_telp: req.body.no_telp,
+            alamat: req.body.alamat
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,10 +75,9 @@ module.exports = {
     // Update data supplier
     editDatasupplier(req, res) {
         let dataEdit = {
-            supplier_nama: req.body.nama,
-            supplier_umur: req.body.umur,
-            supplier_alamat: req.body.alamat,
-            supplier_jabatan: req.body.jabatan
+            supplier: req.body.supplier,
+            no_telp: req.body.no_telp,
+            alamat: req.body.alamat
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {

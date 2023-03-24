@@ -50,10 +50,17 @@ module.exports = {
     // Simpan data user
     addDatauser(req, res) {
         let data = {
+            id_user: req.body.id_user,
             nama: req.body.nama,
-            user_umur: req.body.umur,
-            user_alamat: req.body.alamat,
-            user_jabatan: req.body.jabatan
+            username: req.body.username,
+            password: req.body.password,
+            id_usergroup: req.body.id_usergroup,
+            status: req.body.status,
+            input_by: req.body.input_by,
+            tanggal_input: req.body.tanggal_input,
+            edit_by: req.body.edit_by,
+            tanggal_edit: req.body.tanggal_edit,
+            row_status: req.body.row_status
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -67,6 +74,7 @@ module.exports = {
                     res.send({
                         success: true,
                         message: 'Berhasil tambah data!',
+                        data: results
                     });
                 });
             connection.release();
@@ -75,19 +83,25 @@ module.exports = {
     // Update data user
     editDatauser(req, res) {
         let dataEdit = {
-            user_nama: req.body.nama,
-            user_umur: req.body.umur,
-            user_alamat: req.body.alamat,
-            user_jabatan: req.body.jabatan
+            nama: req.body.nama,
+            username: req.body.username,
+            password: req.body.password,
+            id_usergroup: req.body.id_usergroup,
+            status: req.body.status,
+            input_by: req.body.input_by,
+            tanggal_input: req.body.tanggal_input,
+            edit_by: req.body.edit_by,
+            tanggal_edit: req.body.tanggal_edit,
+            row_status: req.body.row_status
         }
-        let id = req.body.id
+        let id_user = req.body.id_user
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
                 UPDATE user SET ? WHERE id_user = ?;
                 `
-                , [dataEdit, id],
+                , [dataEdit, id_user],
                 function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -100,7 +114,7 @@ module.exports = {
     },
     // Delete data user
     deleteDatauser(req, res) {
-        let id = req.body.id
+        let id = req.body.id_user
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
