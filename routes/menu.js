@@ -1,19 +1,22 @@
 const router = require('express').Router();
 const { menu } = require('../controller');
 
-// GET localhost:8080/menu => Ambil data semua menu
-router.get('/', menu.getDatamenu);
+// Create a new User
+router.post('/', menu.create);
 
-// GET localhost:8080/menu/2 => Ambil data semua menu berdasarkan id = 2
-router.get('/:id', menu.getDatamenuByID);
+// Retrieve all Users
+router.get('/', menu.findAll);
 
-// POST localhost:8080/menu/add => Tambah data menu ke database
-router.post('/add', menu.addDatamenu);
+// Retrieve a single User with id
+router.get('/:id', menu.findOne);
 
-// POST localhost:8080/menu/2 => Edit data menu
-router.put('/:id', menu.editDatamenu);
+// Update a User with id
+router.put('/:id', menu.update);
 
-// POST localhost:8080/menu/delete => Delete data menu
-router.delete('/:id', menu.deleteDatamenu);
+// Delete a User with id
+router.delete('/:id', menu.delete);
+
+// Delete all Users
+router.delete('/', menu.deleteAll);
 
 module.exports = router;

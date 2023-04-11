@@ -1,19 +1,22 @@
 const router = require('express').Router();
 const { detailtransaksi } = require('../controller');
 
-// GET localhost:8080/detailtransaksi => Ambil data semua detailtransaksi
-router.get('/', detailtransaksi.getDatadetailtransaksi);
+// Create a new User
+router.post('/', detailtransaksi.create);
 
-// GET localhost:8080/detailtransaksi/2 => Ambil data semua detailtransaksi berdasarkan id = 2
-router.get('/:id', detailtransaksi.getDatadetailtransaksiByID);
+// Retrieve all Users
+router.get('/', detailtransaksi.findAll);
 
-// POST localhost:8080/detailtransaksi/add => Tambah data detailtransaksi ke database
-router.post('/add', detailtransaksi.addDatadetailtransaksi);
+// Retrieve a single User with id
+router.get('/:id', detailtransaksi.findOne);
 
-// POST localhost:8080/detailtransaksi/2 => Edit data detailtransaksi
-router.put('/:id', detailtransaksi.editDatadetailtransaksi);
+// Update a User with id
+router.put('/:id', detailtransaksi.update);
 
-// POST localhost:8080/detailtransaksi/delete => Delete data detailtransaksi
-router.delete('/:id', detailtransaksi.deleteDatadetailtransaksi);
+// Delete a User with id
+router.delete('/:id', detailtransaksi.delete);
+
+// Delete all Users
+router.delete('/', detailtransaksi.deleteAll);
 
 module.exports = router;

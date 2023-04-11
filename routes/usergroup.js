@@ -1,19 +1,23 @@
 const router = require('express').Router();
 const { usergroup } = require('../controller');
 
-// GET localhost:8080/usergroup => Ambil data semua usergroup
-router.get('/', usergroup.getDatausergroup);
+// Create a new User
+router.post('/', usergroup.create);
 
-// GET localhost:8080/usergroup/2 => Ambil data semua usergroup berdasarkan id = 2
-router.get('/:id', usergroup.getDatausergroupByID);
+// Retrieve all Users
+router.get('/', usergroup.findAll);
 
-// POST localhost:8080/usergroup/add => Tambah data usergroup ke database
-router.post('/add', usergroup.addDatausergroup);
+// Retrieve a single User with id
+router.get('/:id', usergroup.findOne);
 
-// POST localhost:8080/usergroup/2 => Edit data usergroup
-router.put('/:id', usergroup.editDatausergroup);
+// Update a User with id
+router.put('/:id', usergroup.update);
 
-// POST localhost:8080/usergroup/delete => Delete data usergroup
-router.delete('/:id', usergroup.deleteDatausergroup);
+// Delete a User with id
+router.delete('/:id', usergroup.delete);
+
+// Delete all Users
+router.delete('/', usergroup.deleteAll);
+
 
 module.exports = router;

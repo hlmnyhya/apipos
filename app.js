@@ -1,35 +1,35 @@
 require('dotenv').config();
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser')
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var app = express();
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const app = express();
 
 //package parsing lib
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(logger('dev'));
+// app.use(logger(''));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //route file
-var indexRouter = require('./routes/index');
-var user = require('./routes/user');
-var usergroup = require('./routes/usergroup');
-var barang = require('./routes/barang');
-var customer = require('./routes/customer');
-var detailproduct = require('./routes/detailproduct');
-var detailtransaksi = require('./routes/detailtransaksi');
-var menu = require('./routes/menu');
-var menuakses = require('./routes/menuakses');
-var order = require('./routes/order');
-var product = require('./routes/product');
-var submenu = require('./routes/submenu');
-var supplier = require('./routes/supplier');
-var transaksi = require('./routes/transaksi');
+const indexRouter = require('./routes/index');
+const user = require('./routes/user');
+const usergroup = require('./routes/usergroup');
+const barang = require('./routes/barang');
+const customer = require('./routes/customer');
+const detailproduct = require('./routes/detailproduct');
+const detailtransaksi = require('./routes/detailtransaksi');
+const menu = require('./routes/menu');
+const menuakses = require('./routes/menuakses');
+const order = require('./routes/order');
+const product = require('./routes/product');
+const submenu = require('./routes/submenu');
+const supplier = require('./routes/supplier');
+const transaksi = require('./routes/transaksi');
 
 //route url get
 app.use('/', indexRouter);

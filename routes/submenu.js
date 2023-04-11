@@ -1,19 +1,22 @@
 const router = require('express').Router();
 const { submenu } = require('../controller');
 
-// GET localhost:8080/submenu => Ambil data semua submenu
-router.get('/', submenu.getDatasubmenu);
+// Create a new User
+router.post('/', submenu.create);
 
-// GET localhost:8080/submenu/2 => Ambil data semua submenu berdasarkan id = 2
-router.get('/:id', submenu.getDatasubmenuByID);
+// Retrieve all Users
+router.get('/', submenu.findAll);
 
-// POST localhost:8080/submenu/add => Tambah data submenu ke database
-router.post('/add', submenu.addDatasubmenu);
+// Retrieve a single User with id
+router.get('/:id', submenu.findOne);
 
-// POST localhost:8080/submenu/2 => Edit data submenu
-router.put('/:id', submenu.editDatasubmenu);
+// Update a User with id
+router.put('/:id', submenu.update);
 
-// POST localhost:8080/submenu/delete => Delete data submenu
-router.delete('/:id', submenu.deleteDatasubmenu);
+// Delete a User with id
+router.delete('/:id', submenu.delete);
+
+// Delete all Users
+router.delete('/', submenu.deleteAll);
 
 module.exports = router;

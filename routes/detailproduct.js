@@ -1,19 +1,22 @@
 const router = require('express').Router();
 const { detailproduct } = require('../controller');
 
-// GET localhost:8080/detailproduct => Ambil data semua detailproduct
-router.get('/', detailproduct.getDatadetailproduct);
+// Create a new User
+router.post('/', detailproduct.create);
 
-// GET localhost:8080/detailproduct/2 => Ambil data semua detailproduct berdasarkan id = 2
-router.get('/:id', detailproduct.getDatadetailproductByID);
+// Retrieve all Users
+router.get('/', detailproduct.findAll);
 
-// POST localhost:8080/detailproduct/add => Tambah data detailproduct ke database
-router.post('/add', detailproduct.addDatadetailproduct);
+// Retrieve a single User with id
+router.get('/:id', detailproduct.findOne);
 
-// POST localhost:8080/detailproduct/2 => Edit data detailproduct
-router.put('/:id', detailproduct.editDatadetailproduct);
+// Update a User with id
+router.put('/:id', detailproduct.update);
 
-// POST localhost:8080/detailproduct/delete => Delete data detailproduct
-router.delete('/:id', detailproduct.deleteDatadetailproduct);
+// Delete a User with id
+router.delete('/:id', detailproduct.delete);
+
+// Delete all Users
+router.delete('/', detailproduct.deleteAll);
 
 module.exports = router;

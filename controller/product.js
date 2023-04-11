@@ -1,123 +1,121 @@
-const config = require('../config/database');
-const mysql = require('mysql');
-const pool = mysql.createPool(config);
+const db = require("../models");
+const Product = db.Product;
 
-
-pool.on('error', (err) => {
-    console.error(err);
-});
-
-module.exports = {
-    // Ambil data semua product
-    getDataproduct(req, res) {
-        pool.getConnection(function (err, connection) {
-            if (err) throw err;
-            connection.query(
-                `
-                SELECT * FROM product;
-                `
-                , function (error, results) {
-                    if (error) throw error;
-                    res.send({
-                        success: true,
-                        message: 'Berhasil ambil data!',
-                        data: results
-                    });
-                });
-            connection.release();
-        })
-    },
-    // Ambil data product berdasarkan ID
-    getDataproductByID(req, res) {
-        let id = req.params.id;
-        pool.getConnection(function (err, connection) {
-            if (err) throw err;
-            connection.query(
-                `
-                SELECT * FROM product WHERE id_product = ?;
-                `
-                , [id],
-                function (error, results) {
-                    if (error) throw error;
-                    res.send({
-                        success: true,
-                        message: 'Berhasil ambil data!',
-                        data: results
-                    });
-                });
-            connection.release();
-        })
-    },
-    // Simpan data product
-    addDataproduct(req, res) {
-        let data = {
-            id_product: req.body.id_product,
-            product: req.body.product,
-            kategori: req.body.kategori,
-            harga: req.body.harga,
-            stok: req.body.stok
-        }
-        pool.getConnection(function (err, connection) {
-            if (err) throw err;
-            connection.query(
-                `
-                INSERT INTO product SET ?;
-                `
-                , [data],
-                function (error, results) {
-                    if (error) throw error;
-                    res.send({
-                        success: true,
-                        message: 'Berhasil tambah data!',
-                    });
-                });
-            connection.release();
-        })
-    },
-    // Update data product
-    editDataproduct(req, res) {
-        let dataEdit = {
-            product_nama: req.body.nama,
-            product_umur: req.body.umur,
-            product_alamat: req.body.alamat,
-            product_jabatan: req.body.jabatan
-        }
-        let id = req.body.id
-        pool.getConnection(function (err, connection) {
-            if (err) throw err;
-            connection.query(
-                `
-                UPDATE product SET ? WHERE id_product = ?;
-                `
-                , [dataEdit, id],
-                function (error, results) {
-                    if (error) throw error;
-                    res.send({
-                        success: true,
-                        message: 'Berhasil edit data!',
-                    });
-                });
-            connection.release();
-        })
-    },
-    // Delete data product
-    deleteDataproduct(req, res) {
-        let id = req.body.id
-        pool.getConnection(function (err, connection) {
-            if (err) throw err;
-            connection.query(
-                `
-                DELETE FROM product WHERE id_product = ?;
-                `
-                , [id],
-                function (error, results) {
-                    if (error) throw error;
-                    res.send({
-                        success: true,
-                        message: 'Berhasil hapus data!'
-                    });
-                });
-            connection.release();
-        })
+// Create and Save a new User
+exports.create = (req, res) => {
+    // Validate request
+    if (!req.body.id_product) {
+        res.status(400).send({
+            message: "Product can not be empty!"
+        });
+        return;
     }
-}
+
+    // Create a User
+    const product = {
+        id_product: req.body.id_product,
+        product: req.body.product,
+        kategori: req.body.kategori,
+        harga: req.body.harga,
+        stok: req.body.stok,
+    };
+
+    // Save User in the database
+    Product.create(product)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the Product."
+            });
+        });
+};
+
+// Retrieve all Users from the database.
+exports.findAll = (_req, res) => {
+    Product.findAll()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while fetch Product."
+            });
+        });
+};
+
+// Find a single User with an id
+exports.findOne = (req, res) => {
+    const id = req.params.id;
+
+    Product.findByPk(id)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Product not found with id=" + id
+            });
+        });
+};
+
+// Update a User by the id in the request
+exports.update = (req, res) => {
+    const id = req.params.id;
+
+    Product.update(req.body, {
+        where: { id_product: id }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Product was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot update Product with id=${id}. Maybe Product was not found or req.body is empty!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error updating Product with id=" + id
+            });
+        });
+};
+
+// Delete a User with the specified id in the request
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    Product.update({ row_status: 0 }, {
+        where: { id_product: id }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Product was deleted successfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete Product with id=${id}. Maybe Product was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Product with id=" + id
+            });
+        });
+};
+
+// Delete all Users from the database.
+exports.deleteAll = (_req, res) => {
+    Product.destroy({
+        where: {},
+
+    });
+};

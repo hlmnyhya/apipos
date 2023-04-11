@@ -1,19 +1,22 @@
 const router = require('express').Router();
 const { product } = require('../controller');
 
-// GET localhost:8080/product => Ambil data semua product
-router.get('/', product.getDataproduct);
+// Create a new User
+router.post('/', product.create);
 
-// GET localhost:8080/product/2 => Ambil data semua product berdasarkan id = 2
-router.get('/:id', product.getDataproductByID);
+// Retrieve all Users
+router.get('/', product.findAll);
 
-// POST localhost:8080/product/add => Tambah data product ke database
-router.post('/add', product.addDataproduct);
+// Retrieve a single User with id
+router.get('/:id', product.findOne);
 
-// POST localhost:8080/product/2 => Edit data product
-router.put('/:id', product.editDataproduct);
+// Update a User with id
+router.put('/:id', product.update);
 
-// POST localhost:8080/product/delete => Delete data product
-router.delete('/:id', product.deleteDataproduct);
+// Delete a User with id
+router.delete('/:id', product.delete);
+
+// Delete all Users
+router.delete('/', product.deleteAll);
 
 module.exports = router;
