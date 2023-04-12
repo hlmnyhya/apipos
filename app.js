@@ -4,11 +4,13 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 const app = express();
 
 //package parsing lib
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cors());
 // app.use(logger(''));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,79 +19,79 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //route file
 const indexRouter = require('./routes/index');
-const user = require('./routes/user');
-const usergroup = require('./routes/usergroup');
-const barang = require('./routes/barang');
-const customer = require('./routes/customer');
-const detailproduct = require('./routes/detailproduct');
-const detailtransaksi = require('./routes/detailtransaksi');
-const menu = require('./routes/menu');
-const menuakses = require('./routes/menuakses');
-const order = require('./routes/order');
-const product = require('./routes/product');
-const submenu = require('./routes/submenu');
-const supplier = require('./routes/supplier');
-const transaksi = require('./routes/transaksi');
+const user = require('./routes/users');
+const usergroup = require('./routes/usergroups');
+const items = require('./routes/items');
+const customers = require('./routes/customers');
+const productdetails = require('./routes/productdetails');
+const transactiondetails = require('./routes/transactiondetails');
+const menus = require('./routes/menus');
+const accessmenus = require('./routes/accesmenus');
+const orders = require('./routes/orders');
+const products = require('./routes/products');
+const submenus = require('./routes/submenus');
+const suppliers = require('./routes/suppliers');
+const transactions = require('./routes/transactions');
 
 //route url get
 app.use('/', indexRouter);
-app.use('/api/user', user);
-app.use('/api/usergroup', usergroup);
-app.use('/api/barang', barang);
-app.use('/api/customer', customer);
-app.use('/api/detailproduct', detailproduct);
-app.use('/api/detailtransaksi', detailtransaksi);
-app.use('/api/menu', menu);
-app.use('/api/menuakses', menuakses);
-app.use('/api/order', order);
-app.use('/api/product', product);
-app.use('/api/submenu', submenu);
-app.use('/api/supplier', supplier);
-app.use('/api/transaksi', transaksi);
+app.use('/user', user);
+app.use('/usergroup', usergroup);
+app.use('/items', items);
+app.use('/customers', customers);
+app.use('/productdetails', productdetails);
+app.use('/transactiondetails', transactiondetails);
+app.use('/menus', menus);
+app.use('/accessmenus', accessmenus);
+app.use('/orders', orders);
+app.use('/products', products);
+app.use('/submenus', submenus);
+app.use('/suppliers', suppliers);
+app.use('/transactions', transactions);
 
 //route url post
-app.use('/api/user/add', user);
-app.use('/api/usergroup/add', usergroup);
-app.use('/api/barang/add', barang);
-app.use('/api/customer/add', customer);
-app.use('/api/detailproduct/add', detailproduct);
-app.use('/api/detailtransaksi/add', detailtransaksi);
-app.use('/api/menu/add', menu);
-app.use('/api/menuakses/add', menuakses);
-app.use('/api/order/add', order);
-app.use('/api/product/add', product);
-app.use('/api/submenu/add', submenu);
-app.use('/api/supplier/add', supplier);
-app.use('/api/transaksi/add', transaksi);
+app.use('/user/add', user);
+app.use('/usergroup/add', usergroup);
+app.use('/items/add', items);
+app.use('/customers/add', customers);
+app.use('/productdetails/add', productdetails);
+app.use('/transactiondetails/add', transactiondetails);
+app.use('/menus/add', menus);
+app.use('/accessmenus/add', accessmenus);
+app.use('/orders/add', orders);
+app.use('/products/add', products);
+app.use('/submenus/add', submenus);
+app.use('/suppliers/add', suppliers);
+app.use('/transactions/add', transactions);
 
 //route url put
-app.use('/api/user/edit/:id', user);
-app.use('/api/usergroup/edit/:id', usergroup);
-app.use('/api/barang/edit/:id', barang);
-app.use('/api/customer/edit/:id', customer);
-app.use('/api/detailproduct/edit/:id', detailproduct);
-app.use('/api/detailtransaksi/edit/:id', detailtransaksi);
-app.use('/api/menu/edit/:id', menu);
-app.use('/api/menuakses/edit/:id', menuakses);
-app.use('/api/order/edit/:id', order);
-app.use('/api/product/edit/:id', product);
-app.use('/api/submenu/edit/:id', submenu);
-app.use('/api/supplier/edit/:id', supplier);
-app.use('/api/transaksi/edit/:id', transaksi);
+app.use('/user/edit/:id', user);
+app.use('/usergroup/edit/:id', usergroup);
+app.use('/items/edit/:id', items);
+app.use('/customers/edit/:id', customers);
+app.use('/productdetails/edit/:id', productdetails);
+app.use('/transactiondetails/edit/:id', transactiondetails);
+app.use('/menus/edit/:id', menus);
+app.use('/accessmenus/edit/:id', accessmenus);
+app.use('/orders/edit/:id', orders);
+app.use('/products/edit/:id', products);
+app.use('/submenus/edit/:id', submenus);
+app.use('/suppliers/edit/:id', suppliers);
+app.use('/transactions/edit/:id', transactions);
 
 //route url delete
-app.use('/api/user/:id', user);
-app.use('/api/usergroup/:id', usergroup);
-app.use('/api/barang/:id', barang);
-app.use('/api/customer/:id', customer);
-app.use('/api/detailproduct/:id', detailproduct);
-app.use('/api/detailtransaksi/:id', detailtransaksi);
-app.use('/api/menu/:id', menu);
-app.use('/api/menuakses/:id', menuakses);
-app.use('/api/order/:id', order);
-app.use('/api/product/:id', product);
-app.use('/api/submenu/:id', submenu);
-app.use('/api/supplier/:id', supplier);
-app.use('/api/transaksi/:id', transaksi);
+app.use('/user/:id', user);
+app.use('/usergroup/:id', usergroup);
+app.use('/items/:id', items);
+app.use('/customers/:id', customers);
+app.use('/productdetails/:id', productdetails);
+app.use('/transactiondetails/:id', transactiondetails);
+app.use('/menus/:id', menus);
+app.use('/accessmenus/:id', accessmenus);
+app.use('/orders/:id', orders);
+app.use('/products/:id', products);
+app.use('/submenus/:id', submenus);
+app.use('/suppliers/:id', suppliers);
+app.use('/transactions/:id', transactions);
 
 module.exports = app;

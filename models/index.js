@@ -18,18 +18,19 @@ db.sequelize = sequelize;
 
 
 // define semua models yang ada pada aplikasi
-db.User = require('./user.model')(sequelize, Sequelize);
-db.UserGroup = require('./usergroup.model')(sequelize, Sequelize);
-db.Transaksi = require('./transaksi.model')(sequelize, Sequelize);
-db.DetailTransaksi = require('./detailtransaksi.model')(sequelize, Sequelize);
-db.Customer = require('./customer.model')(sequelize, Sequelize);
-db.Product = require('./product.model')(sequelize, Sequelize);
-db.DetailProduct = require('./detailproduct.model')(sequelize, Sequelize);
-db.Order = require('./order.model')(sequelize, Sequelize);
-db.Menu = require('./menu.model')(sequelize, Sequelize);
-db.SubMenu = require('./submenu.model')(sequelize, Sequelize);
-db.MenuAkses = require('./menuakses.model')(sequelize, Sequelize);
-db.Barang = require('./barang.model')(sequelize, Sequelize);
-db.Supplier = require('./supplier.model')(sequelize, Sequelize);
+db.User = require('./users.model')(sequelize, Sequelize);
+db.UserGroup = require('./usergroups.model')(sequelize, Sequelize);
+db.Transactions = require('./transactions.model')(sequelize, Sequelize);
+db.DetailTransaksi = require('./transactiondetails.model')(sequelize, Sequelize);
+const newLocal = './customers.model';
+db.Customers = require(newLocal)(sequelize, Sequelize);
+db.Products = require('./products.model')(sequelize, Sequelize);
+db.DetailProduct = require('./productdetails.model')(sequelize, Sequelize);
+db.Orders = require('./orders.model')(sequelize, Sequelize);
+db.Menus = require('./menus.model')(sequelize, Sequelize);
+db.SubMenus = require('./submenus.model')(sequelize, Sequelize);
+db.AccessMenus = require('./accessmenus.model')(sequelize, Sequelize);
+db.Items = require('./items.model')(sequelize, Sequelize);
+db.Suppliers = require('./suppliers.model')(sequelize, Sequelize);
 
 module.exports = db;
