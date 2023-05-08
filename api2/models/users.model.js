@@ -23,12 +23,6 @@ module.exports = (sequelize, Sequelize) => {
         status: {
             type: Sequelize.STRING,
         },
-        input_by: {
-            type: Sequelize.STRING,
-        },
-        edit_by: {
-            type: Sequelize.STRING,
-        },
         status: {
             type: Sequelize.INTEGER,
         },
