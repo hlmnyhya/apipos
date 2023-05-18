@@ -18,11 +18,11 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
 
-    const connect = async () => {
-        await UserGroup.sync();
-    };
+    // const connect = async () => {
+    //     await UserGroup.sync();
+    // };
 
-    connect();
+    // connect();
 
     // Menghubungkan tabel `user_groups` dengan tabel `users`
     // UserGroup.hasMany(sequelize.models.User, {

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    "User",
+    "user",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
+      nama: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -23,9 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       role: {
         type: DataTypes.ENUM,
-        values: ["admin", "student"],
+        values: ["admin", "user"],
         allowNull: false,
-        defaultValue: "student",
+        defaultValue: "admin",
       },
       avatar: {
         type: DataTypes.STRING,
