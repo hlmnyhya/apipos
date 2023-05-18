@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //route file
 const indexRouter = require('./routes/index');
-const user = require('./routes/user');
+const user = require('./routes/users');
 const usergroup = require('./routes/usergroup');
 const product = require('./routes/product');
 const transaksi = require('./routes/transaksi');
