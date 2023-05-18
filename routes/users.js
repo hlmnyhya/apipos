@@ -1,23 +1,17 @@
 const router = require('express').Router();
-const { users } = require('../controller');
+const { users, refreshToken } = require('../controller');
+const auth = require('../middlewares/Auth');
 
-// Create a new User
-router.post('/', users.create);
 
-// Retrieve all Users
-router.get('/', users.findAll);
 
-// Retrieve a single User with id
-router.get('/:id', users.findOne);
-
-// Update a User with id
+router.post('/register', users.register);
+router.post('/login', users.login);
+router.post('/logout',  users.logout);
+router.get('/',auth, users.getUsers);
+router.get('/:id',auth, users.getUser);
 router.put('/:id', users.update);
 
-// Delete a User with id
-router.delete('/:id', users.delete);
 
-// Delete all Users
-router.delete('/', users.deleteAll);
 
 module.exports = router;
 
