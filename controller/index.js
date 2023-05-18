@@ -1,31 +1,19 @@
-const users = require('./users');
-const usergroups = require('./usergroups');
-const menus = require('./menus');
-const submenus = require('./submenus');
-const accessmenus = require('./accessmenus');
-const items = require('./items');
-const products = require('./products');
-const orders = require('./orders');
-const customers = require('./customers');
-const suppliers = require('./suppliers');
-const transactions = require('./transactions');
-const productdetails = require('./productdetails');
-const transactiondetails = require('./transactiondetails');
+const user = require('./user');
+const usergroup = require('./usergroup');
+const product = require('./product');
+const transaksi = require('./transaksi');
+const detailtransaksi = require('./detailtransaksi');
+const temptransaksi = require('./temptransaksi');
+const customer = require('./customer');
 
 
 
 module.exports = {
-    users,
-    usergroups,
-    menus,
-    submenus,
-    accessmenus,
-    items,
-    products,
-    orders,
-    customers,
-    suppliers,
-    transactions,
-    productdetails,
-    transactiondetails
+    user,
+    usergroup,
+    product,
+    transaksi,
+    detailtransaksi,
+    temptransaksi,
+    customer
 };

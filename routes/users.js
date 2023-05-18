@@ -3,7 +3,6 @@ const { users, refreshToken } = require('../controller');
 const auth = require('../middlewares/Auth');
 
 
-
 router.post('/register', users.register);
 router.post('/login', users.login);
 router.post('/logout',  users.logout);
@@ -14,8 +13,3 @@ router.put('/:id', users.update);
 
 
 module.exports = router;
-
-
-
-
-
