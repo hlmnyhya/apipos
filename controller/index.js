@@ -1,4 +1,5 @@
 const user = require('./user');
+const users = require('./users');
 const usergroup = require('./usergroup');
 const product = require('./product');
 const transaksi = require('./transaksi');
@@ -10,6 +11,7 @@ const customer = require('./customer');
 
 module.exports = {
     user,
+    users,
     usergroup,
     product,
     transaksi,
